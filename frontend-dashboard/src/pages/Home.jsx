@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <>
-      <h1>Aktuelle Baustellen informationen</h1>
+      <h2>Kanton Bern baut - wir zeigen wo!</h2>
       <OSMMapWithAllPolygon projekte={projekte} />
     </>
   );

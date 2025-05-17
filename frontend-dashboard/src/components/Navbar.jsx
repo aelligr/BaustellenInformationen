@@ -6,7 +6,7 @@ function Navbar() {
       <Link to="/" style={{ marginRight: '1rem' }}>Home</Link>
       <Link to="/uebersicht" style={{ marginRight: '1rem' }}>Übersicht</Link>
       {/* <Link to="/neuer Eintrag">API Dokumentation</Link>   */}
-      <Link to="http://localhost:8080/swagger-ui/index.html#">API Dokumentation</Link>
+      <Link to="http://localhost:8080/swagger-ui/index.html#" target="_blank">API Dokumentation</Link>
       <Link to="/login">Ausloggen <em>(Aellig Raffael, BVD-TBA-DLZ)</em></Link>
     </nav>
   )

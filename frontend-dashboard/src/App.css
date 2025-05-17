@@ -17,7 +17,7 @@ header {
   width: 100%;
   background: white;
   z-index: 1000;
-  border-bottom: 2px solid #e60000; /* Bundesrot */
+  border-bottom: 2px solid #e60000;
   padding: 1rem 2rem;
   text-align: center;
 }
@@ -65,7 +65,7 @@ main, .content {
 button {
   background-color: #e60000;
   color: white;
-  border: none;
+  border: 1px solid #e60000;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   cursor: pointer;
@@ -75,6 +75,7 @@ button {
 
 button:hover {
   background-color: #b80000;
+    color: white;
 }
 
 /* Formular-Layout */
