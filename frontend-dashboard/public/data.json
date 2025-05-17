@@ -1,0 +1,68 @@
+{
+    "projekte": [
+      {
+        "titel": "Verkehrssperrung Kantonsstrasse Nr. 1358",
+        "untertitel": "Twann - Ligerz, Sektor Bipschal SBB-Baustelle",
+        "strassenNr": "1358 ; Twann - Ligerz",
+        "projektnummer": "A16238",
+        "projektbezeichnung": "Sektor Bipschal SBB-Baustelle",
+        "teilstrecke": "Querung der SBB-Baustelle Ligerz Ost \"Bipschal\" auf einer Länge von 200 m",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [7.148140, 47.090391]
+        },
+        "dauer": {
+          "von": "2025-05-15T22:00:00",
+          "bis": "2025-05-16T04:30:00"
+        },
+        "ausnahmen": "keine",
+        "verkehrsfuehrung": [
+          "Vorgeschriebene Baustellen- und Umleitungsschilder werden aufgestellt.",
+          "Umleitung nach La Neuveville von Twann via Kantonsstraße „Les Gorges de Douanne“ – Prêles – La Neuveville (max. 18 t).",
+          "Umleitung nach Twann von La Neuveville via Prêles – Les Gorges de Douanne – Douanne (max. 18 t).",
+          "Autobahntrasse A5 bleibt zugänglich.",
+          "Schwerverkehr über 18 t: Umleitung über Nationalstraße N5 oder Umgehung Bielersee."
+        ],
+        "einschraenkungen": "Gesperrt für alle Verkehrsteilnehmer (Kraftfahrzeuge, Radfahrer, Reiter, Fußgänger).",
+        "grundDerMassnahme": "Lieferung und Installation eines Bohrgeräts für die SBB-Baustelle",
+        "verfuegendeStelle": {
+          "behoerde": "Tiefbauamt des Kantons Bern – Oberingenieurkreis III",
+          "dienststelle": "Service pour le Jura bernois",
+          "adresse": "Grand Nods 1",
+          "plzOrt": "2732 Loveresse"
+        },
+        "rechtlicheHinweise": "Gestützt auf Art. 65 und 66 des Strassengesetzes vom 4. Juni 2008 (SG, BSG 732.11) und Art. 43 der Strassenverordnung vom 29. Oktober 2008 (SV, BSG 732.111.1), wird diese Kantonsstraße für den Verkehr gesperrt."
+      },
+      {
+        "titel": "Strassensanierung Kantonsstrasse Nr. 2105",
+        "untertitel": "Ins – Müntschemier, Abschnitt Weierbrücke",
+        "strassenNr": "2105 ; Ins – Müntschemier",
+        "projektnummer": "B20491",
+        "projektbezeichnung": "Erneuerung Fahrbahn und Brückensanierung",
+        "teilstrecke": "Bereich Weierbrücke bis Dorfeingang Müntschemier, ca. 500 m",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [7.099874, 46.998765]
+        },
+        "dauer": {
+          "von": "2025-06-10T06:00:00",
+          "bis": "2025-06-21T20:00:00"
+        },
+        "ausnahmen": "Zubringer bis Baustelle gestattet.",
+        "verkehrsfuehrung": [
+          "Einspurige Verkehrsführung mit Lichtsignalanlage.",
+          "Umleitung für Schwerverkehr via Kerzers – Galmiz – Müntschemier.",
+          "Temporäre Bushaltestellen werden eingerichtet."
+        ],
+        "einschraenkungen": "Verzögerungen durch Ampelbetrieb möglich. Durchfahrt für Schwerverkehr eingeschränkt.",
+        "grundDerMassnahme": "Belagserneuerung und Instandsetzung der Weierbrücke",
+        "verfuegendeStelle": {
+          "behoerde": "Tiefbauamt des Kantons Bern – Oberingenieurkreis I",
+          "dienststelle": "Regionalstelle Seeland",
+          "adresse": "Kasernenstrasse 19",
+          "plzOrt": "2560 Nidau"
+        },
+        "rechtlicheHinweise": "Gestützt auf Art. 65 StrG und Art. 43 SV erfolgt diese Maßnahme unter temporärer Verkehrsführung."
+      }
+    ]
+  }
