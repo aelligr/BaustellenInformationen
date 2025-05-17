@@ -14,7 +14,7 @@ function App() {
   return (
     <>
      <header>
-      <h1>Aktuelle Baustellen informationen</h1>
+      <h1>Aktuelle Baustellen Informationen</h1>
      </header>
      <Navbar />
      <ProjektProvider>
