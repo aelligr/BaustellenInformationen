@@ -1,10 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import { useNavigate } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const OSMMapWithAllPolygons = ({ projekte }) => {
   const mapRef = useRef();
+  const navigate = useNavigate();
 
   // Alle Features extrahieren und zu einer FeatureCollection zusammenführen
   const allFeatures = projekte
@@ -22,6 +24,19 @@ const OSMMapWithAllPolygons = ({ projekte }) => {
     type: 'FeatureCollection',
     features: allFeatures
   };
+
+  const onEachFeature = (feature, layer) => {
+    layer.on({
+      click: () => {
+        const nummer = feature.properties?.PROJEKTNUM;
+        if (nummer) {
+          navigate(`/details/${nummer}`);
+        }
+      }
+    });
+  };
+
+
 
   useEffect(() => {
     const map = mapRef.current;
@@ -50,6 +65,7 @@ const OSMMapWithAllPolygons = ({ projekte }) => {
           fillOpacity: 0.7,
           weight: 2
         }}
+        onEachFeature={onEachFeature}
       />
     </MapContainer>
   );
