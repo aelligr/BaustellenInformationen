@@ -7,7 +7,7 @@ function Navbar() {
       <Link to="/uebersicht" style={{ marginRight: '1rem' }}>Übersicht</Link>
       {/* <Link to="/neuer Eintrag">API Dokumentation</Link>  
       <Link to="/api-dok">API Dokumentation</Link> */}
-      <Link to="/login">Ausloggen <em>(Legostein Gmbh</em>)</Link>
+      <Link to="/login">Ausloggen <em>(Aellig Raffael, BVD-TBA-DLZ)</em></Link>
     </nav>
   )
 }

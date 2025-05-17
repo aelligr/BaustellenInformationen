@@ -100,7 +100,7 @@ input[type="datetime-local"] {
 /* Projektlisten / Detailansicht */
 .projekt-list,
 .projekt-detail {
-  margin-top: 10rem;
+  margin-top: 2rem;
   max-width: 800px;
 }
 
