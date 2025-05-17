@@ -90,6 +90,7 @@ public class StartupCronJob {
                     baustelle.setDauerVon(localDateTimeTerminVon);
                     baustelle.setDauerBis(localDateTimeTerminBis);
                     baustelle.setAchsBezeichnung(ACHSBEZEIC);
+                    baustelle.setProjektbezeichnung(properties.get("PROJEKTBEZ").asText());
                     baustelle.setStatus(STATUS_BEZ);
                     baustelle.setGeoJsonData(entry.toString());
 

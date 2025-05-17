@@ -13,15 +13,13 @@ public class Baustelle {
 
     @Id
     private Long id;
-
-    @Column(name = "projekt_nummer")
     private String projektNummer;
-
     private LocalDateTime dauerVon;
     private LocalDateTime dauerBis;
     private String objektAngaben;
     private String achsBezeichnung;
     private String status;
+    private String projektbezeichnung;
     private String geoJsonData;
 }
 

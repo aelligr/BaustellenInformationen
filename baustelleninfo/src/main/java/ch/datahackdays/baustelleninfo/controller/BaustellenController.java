@@ -52,6 +52,7 @@ public class BaustellenController {
             existingBaustelle.setDauerBis(baustelle.getDauerBis());
             existingBaustelle.setAchsBezeichnung(baustelle.getAchsBezeichnung());
             existingBaustelle.setStatus(baustelle.getStatus());
+            existingBaustelle.setProjektbezeichnung(baustelle.getProjektbezeichnung());
             existingBaustelle.setGeoJsonData(baustelle.getGeoJsonData());
 
             // Save updated entity

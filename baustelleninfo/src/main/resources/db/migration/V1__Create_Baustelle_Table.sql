@@ -6,5 +6,6 @@ CREATE TABLE baustelle (
                            objekt_angaben VARCHAR(255),
                            achs_bezeichnung VARCHAR(255),
                            status VARCHAR(255),
+                           projektbezeichnung VARCHAR(255),
                            geo_json_data TEXT
 );
