@@ -35,10 +35,13 @@ public class StartupCronJob {
     public void executeOnStartup() {
         System.out.println("Executing cron job at application startup...");
 
-        var content = readFileFromFileSystem("Baustellenbis20250630.geojson");
         // var content = readFileFromS3("Baustellen2026_2027.geojson");
 
-        parseAndPersistGeoJson(content);
+        var content1 = readFileFromFileSystem("Baustellenbis20250630.geojson");
+        parseAndPersistGeoJson(content1);
+
+        var content2 = readFileFromFileSystem("Baustellennach20250630.geojson");
+        parseAndPersistGeoJson(content2);
     }
 
     private String readFileFromFileSystem(String fileName) {
