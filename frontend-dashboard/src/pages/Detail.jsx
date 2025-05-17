@@ -8,67 +8,37 @@ function Detail() {
   const { projektnummer } = useParams();
   const { projekte } = useContext(ProjektContext);
 
-  // Feature aus verschachtelter Struktur extrahieren
-  let feature = null;
-  for (const projekt of projekte) {
-    feature = projekt.features.find(f => f.projektnummer === projektnummer);
-    if (feature) break;
-  }
+  // Projekt mit passender Nummer finden (nicht mehr features)
+  const projekt = projekte.find(p => p.projektNummer === projektnummer);
 
-  if (!feature) {
+  if (!projekt) {
     return <div>Projekt nicht gefunden.</div>;
   }
 
   return (
     <div className="projekt-detail">
-      <h1>{feature.titel}</h1>
-      <h2>{feature.untertitel}</h2>
+      <h1>Projekt {projekt.projektNummer}</h1>
 
-      <Link to={`/edit/${feature.projektnummer}`}>
+      {projekt.untertitel && <h2>{projekt.untertitel}</h2>}
+
+      <Link to={`/edit/${projekt.projektNummer}`}>
         <button>Bearbeiten</button>
       </Link>
 
-      <p><strong>Projektnummer:</strong> {feature.projektnummer}</p>
-      <p><strong>Projektbezeichnung:</strong> {feature.projektbezeichnung}</p>
-      <p><strong>Teilstrecke:</strong> {feature.teilstrecke}</p>
-      <p><strong>Strassen-Nr:</strong> {feature.strassenNr}</p>
+      <p><strong>Status:</strong> {projekt.status}</p>
+      <p><strong>Achsbezeichnung:</strong> {projekt.achsBezeichnung}</p>
 
-      <p><strong>Dauer:</strong> {new Date(feature.dauer.von).toLocaleString()} – {new Date(feature.dauer.bis).toLocaleString()}</p>
-      <p><strong>Ausnahmen:</strong> {feature.ausnahmen}</p>
+      <p><strong>Dauer:</strong> {new Date(projekt.dauerVon).toLocaleDateString()} – {new Date(projekt.dauerBis).toLocaleDateString()}</p>
 
-      <div>
-        <strong>Verkehrsführung:</strong>
-        <ul>
-          {feature.verkehrsfuehrung.map((punkt, i) => (
-            <li key={i}>{punkt}</li>
-          ))}
-        </ul>
-      </div>
-
-      <p><strong>Einschränkungen:</strong> {feature.einschraenkungen}</p>
-      <p><strong>Grund der Maßnahme:</strong> {feature.grundDerMassnahme}</p>
-
-      <div>
-        <strong>Verfügende Stelle:</strong>
-        <p>{feature.verfuegendeStelle.behoerde}</p>
-        <p>{feature.verfuegendeStelle.dienststelle}</p>
-        <p>{feature.verfuegendeStelle.adresse}, {feature.verfuegendeStelle.plzOrt}</p>
-      </div>
-
-      <p><strong>Rechtliche Hinweise:</strong> {feature.rechtlicheHinweise}</p>
-
-      <div>
-        <strong>Geokoordinaten:</strong>
-        <p>Typ: {feature.geometry.type}</p>
-        <p>
-          Koordinaten: <br />
-          {feature.geometry.coordinates.map((coord, i) => (
-            <span key={i}>Lon: {coord[0]}, Lat: {coord[1]}<br /></span>
-          ))}
-        </p>
-      </div>
-
-      <OSMMapWithPolygon data={feature} />
+      {/* Optional: Objektangaben anzeigen, falls vorhanden */}
+      {projekt.objektAngaben && (
+        <div>
+          <strong>Objektangaben:</strong>
+          <pre>{JSON.stringify(projekt.objektAngaben, null, 2)}</pre>
+        </div>
+      )}
+          <OSMMapWithPolygon data={projekt.geoJsonData} />
+      )
     </div>
   );
 }

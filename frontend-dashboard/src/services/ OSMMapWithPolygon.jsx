@@ -3,10 +3,12 @@ import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const OSMMapWithPolygon = ({ data }) => {
-    
-  const coordinates = data?.geometry?.coordinates;
 
-  // Für Kartenauschnitt immer erstes Punktpaar nehmen
+  const geoJson = typeof data === 'string' ? JSON.parse(data) : data;
+
+  const coordinates = geoJson?.geometry?.coordinates;
+
+  // Für Kartenausschnitt immer erstes Punktpaar nehmen
   const firstCoord = Array.isArray(coordinates?.[0])
     ? (Array.isArray(coordinates[0][0]) ? coordinates[0][0] : coordinates[0]) // Polygon vs LineString
     : null;
@@ -21,12 +23,12 @@ const OSMMapWithPolygon = ({ data }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <GeoJSON
-        data={data}
+        data={geoJson}
         style={{
           color: 'red',
           fillColor: 'red',
           fillOpacity: 1,
-          weight: 10
+          weight: 3
         }}
       />
     </MapContainer>

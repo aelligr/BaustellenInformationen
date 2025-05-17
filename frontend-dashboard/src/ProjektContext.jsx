@@ -18,3 +18,9 @@ export function ProjektProvider({ children }) {
     </ProjektContext.Provider>
   );
 }
+
+// GET
+// localhost:8080/api/baustellen
+
+// PUT und GET 
+// localhost:8080/api/baustellen/:id

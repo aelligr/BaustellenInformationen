@@ -8,42 +8,37 @@ function Edit() {
   const navigate = useNavigate();
   const { projekte, setProjekte } = useContext(ProjektContext);
 
-  const projekt = projekte.find(p => p.projektnummer === projektnummer);
+  const projekt = projekte.find(p => p.projektNummer === projektnummer);
 
-  const [von, setVon] = useState(projekt?.dauer.von || "");
-  const [bis, setBis] = useState(projekt?.dauer.bis || "");
-  const [teilstrecke, setTeilstrecke] = useState(projekt?.teilstrecke || "");
-  const [verkehr, setVerkehr] = useState(projekt?.verkehrsfuehrung || []);
+  const [dauerVon, setDauerVon] = useState(projekt?.dauerVon || "");
+  const [dauerBis, setDauerBis] = useState(projekt?.dauerBis || "");
+  const [achsBezeichnung, setAchsBezeichnung] = useState(projekt?.achsBezeichnung || "");
+  const [status, setStatus] = useState(projekt?.status || "");
 
   if (!projekt) {
     return <div>Projekt nicht gefunden.</div>;
   }
 
-  const handleVerkehrChange = (index, value) => {
-    const newVerkehr = [...verkehr];
-    newVerkehr[index] = value;
-    setVerkehr(newVerkehr);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const updatedProjekt = {
       ...projekt,
-      dauer: { von, bis },
-      teilstrecke,
-      verkehrsfuehrung: verkehr
+      dauerVon,
+      dauerBis,
+      achsBezeichnung,
+      status
     };
-  
+
     try {
-      const result = await updateProjekt(projektnummer, updatedProjekt);
-  
+      const result = await updateProjekt(projekt.projektNummer, updatedProjekt);
+
       const updatedProjekte = projekte.map(p =>
-        p.projektnummer === projektnummer ? result : p
+        p.projektNummer === projekt.projektNummer ? result : p
       );
       setProjekte(updatedProjekte);
-  
-      navigate(`/details/${projektnummer}`);
+
+      navigate(`/details/${projekt.projektNummer}`);
     } catch (error) {
       console.error('Fehler beim Update:', error);
       alert('Das Projekt konnte nicht aktualisiert werden.');
@@ -52,26 +47,35 @@ function Edit() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Projekt bearbeiten: {projekt.titel}</h2>
+      <h2>Projekt bearbeiten: {projekt.projektNummer}</h2>
 
       <label>Von:</label>
-      <input type="datetime-local" value={von} onChange={(e) => setVon(e.target.value)} />
+      <input
+        type="date"
+        value={dauerVon?.slice(0, 10)}
+        onChange={(e) => setDauerVon(e.target.value)}
+      />
 
       <label>Bis:</label>
-      <input type="datetime-local" value={bis} onChange={(e) => setBis(e.target.value)} />
+      <input
+        type="date"
+        value={dauerBis?.slice(0, 10)}
+        onChange={(e) => setDauerBis(e.target.value)}
+      />
 
-      <label>Strecke:</label>
-      <input type="text" value={teilstrecke} onChange={(e) => setTeilstrecke(e.target.value)} />
+      <label>Achsbezeichnung:</label>
+      <input
+        type="text"
+        value={achsBezeichnung}
+        onChange={(e) => setAchsBezeichnung(e.target.value)}
+      />
 
-      <label>Verkehrsführung:</label>
-      {verkehr.map((v, i) => (
-        <input
-          key={i}
-          type="text"
-          value={v}
-          onChange={(e) => handleVerkehrChange(i, e.target.value)}
-        />
-      ))}
+      <label>Status:</label>
+      <input
+        type="text"
+        value={status}
+        onChange={(e) => setStatus(e.target.value)}
+      />
 
       <button type="submit">Speichern</button>
     </form>

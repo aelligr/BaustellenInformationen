@@ -1,53 +1,58 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
-import { useNavigate } from 'react-router-dom';
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const OSMMapWithAllPolygon = ({ features }) => {
-  const navigate = useNavigate();
+const OSMMapWithAllPolygons = ({ projekte }) => {
+  const mapRef = useRef();
 
-  const allCoords = features
-    .map(f => f.geometry?.coordinates)
-    .filter(Boolean)
-    .map(coords => {
-      const first = Array.isArray(coords[0][0]) ? coords[0][0] : coords[0];
-      return [first[1], first[0]];
-    });
-
-  const center = allCoords.length > 0 ? allCoords[0] : [46.94809, 7.44744];
-
-  const onEachFeature = (feature, layer) => {
-    layer.on({
-      click: () => {
-        if (feature.projektnummer) {
-          navigate(`/details/${feature.projektnummer}`);
-        }
+  // Alle Features extrahieren und zu einer FeatureCollection zusammenführen
+  const allFeatures = projekte
+    .map(p => {
+      try {
+        return JSON.parse(p.geoJsonData);
+      } catch (e) {
+        console.error('Invalid geoJsonData in project:', p.id);
+        return null;
       }
-    });
-    layer.bindTooltip(feature.titel || feature.projektnummer || 'Details');
+    })
+    .filter(f => f !== null);
+
+  const featureCollection = {
+    type: 'FeatureCollection',
+    features: allFeatures
   };
 
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+
+    const layer = L.geoJSON(featureCollection);
+    map.fitBounds(layer.getBounds());
+  }, [featureCollection]);
+
   return (
-    <MapContainer center={center} zoom={14} style={{ height: '500px', width: '100%' }}>
+    <MapContainer
+      center={[46.94809, 7.44744]} // Fallback: Bern
+      zoom={8}
+      style={{ height: '600px', width: '100%' }}
+      whenCreated={(mapInstance) => { mapRef.current = mapInstance; }}
+    >
       <TileLayer
         attribution="&copy; OpenStreetMap contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {features.map((feature, idx) => (
-        <GeoJSON
-          key={idx}
-          data={feature}
-          style={{
-            color: 'red',
-            fillColor: 'red',
-            fillOpacity: 1,
-            weight: 10
-          }}
-          onEachFeature={onEachFeature}
-        />
-      ))}
+      <GeoJSON
+        data={featureCollection}
+        style={{
+          color: 'red',
+          fillColor: 'red',
+          fillOpacity: 0.7,
+          weight: 2
+        }}
+      />
     </MapContainer>
   );
 };
 
-export default OSMMapWithAllPolygon;
+export default OSMMapWithAllPolygons;
