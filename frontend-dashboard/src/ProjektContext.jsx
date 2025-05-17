@@ -6,10 +6,20 @@ export function ProjektProvider({ children }) {
   const [projekte, setProjekte] = useState([]);
 
   useEffect(() => {
-    fetch('/data.json')  
-      .then((res) => res.json())
-      .then((data) => setProjekte(data.projekte))
-      .catch((err) => console.error('Fehler beim Laden der Daten:', err));
+    fetch('http://localhost:8080/api/baustellen')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Fetched data:', data);
+        setProjekte(data.projekte);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
   }, []);
 
   return (

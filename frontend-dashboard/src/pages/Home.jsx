@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <>
-      <h1>Willkommen auf der Startseite!</h1>
+      <h1>Aktuelle Baustellen informationen</h1>
       <OSMMapWithAllPolygon projekte={projekte} />
     </>
   );
