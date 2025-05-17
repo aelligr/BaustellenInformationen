@@ -2,60 +2,73 @@ import { useParams } from "react-router-dom";
 import { useContext } from "react";
 import { ProjektContext } from "../ProjektContext";
 import { Link } from "react-router-dom";
+import OSMMapWithPolygon from "../services/ OSMMapWithPolygon";
 
 function Detail() {
   const { projektnummer } = useParams();
   const { projekte } = useContext(ProjektContext);
 
-  const projekt = projekte.find(p => p.projektnummer === projektnummer);
+  // Feature aus verschachtelter Struktur extrahieren
+  let feature = null;
+  for (const projekt of projekte) {
+    feature = projekt.features.find(f => f.projektnummer === projektnummer);
+    if (feature) break;
+  }
 
-  if (!projekt) {
+  if (!feature) {
     return <div>Projekt nicht gefunden.</div>;
   }
 
   return (
     <div className="projekt-detail">
-      <h1>{projekt.titel}</h1>
-      <h2>{projekt.untertitel}</h2>
-      <Link to={`/edit/${projekt.projektnummer}`}>
+      <h1>{feature.titel}</h1>
+      <h2>{feature.untertitel}</h2>
+
+      <Link to={`/edit/${feature.projektnummer}`}>
         <button>Bearbeiten</button>
       </Link>
 
-      <p><strong>Projektnummer:</strong> {projekt.projektnummer}</p>
-      <p><strong>Projektbezeichnung:</strong> {projekt.projektbezeichnung}</p>
-      <p><strong>Teilstrecke:</strong> {projekt.teilstrecke}</p>
-      <p><strong>Strassen-Nr:</strong> {projekt.strassenNr}</p>
+      <p><strong>Projektnummer:</strong> {feature.projektnummer}</p>
+      <p><strong>Projektbezeichnung:</strong> {feature.projektbezeichnung}</p>
+      <p><strong>Teilstrecke:</strong> {feature.teilstrecke}</p>
+      <p><strong>Strassen-Nr:</strong> {feature.strassenNr}</p>
 
-      <p><strong>Dauer:</strong> {new Date(projekt.dauer.von).toLocaleString()} – {new Date(projekt.dauer.bis).toLocaleString()}</p>
-
-      <p><strong>Ausnahmen:</strong> {projekt.ausnahmen}</p>
+      <p><strong>Dauer:</strong> {new Date(feature.dauer.von).toLocaleString()} – {new Date(feature.dauer.bis).toLocaleString()}</p>
+      <p><strong>Ausnahmen:</strong> {feature.ausnahmen}</p>
 
       <div>
         <strong>Verkehrsführung:</strong>
         <ul>
-          {projekt.verkehrsfuehrung.map((punkt, i) => (
+          {feature.verkehrsfuehrung.map((punkt, i) => (
             <li key={i}>{punkt}</li>
           ))}
         </ul>
       </div>
 
-      <p><strong>Einschränkungen:</strong> {projekt.einschraenkungen}</p>
-      <p><strong>Grund der Maßnahme:</strong> {projekt.grundDerMassnahme}</p>
+      <p><strong>Einschränkungen:</strong> {feature.einschraenkungen}</p>
+      <p><strong>Grund der Maßnahme:</strong> {feature.grundDerMassnahme}</p>
 
       <div>
         <strong>Verfügende Stelle:</strong>
-        <p>{projekt.verfuegendeStelle.behoerde}</p>
-        <p>{projekt.verfuegendeStelle.dienststelle}</p>
-        <p>{projekt.verfuegendeStelle.adresse}, {projekt.verfuegendeStelle.plzOrt}</p>
+        <p>{feature.verfuegendeStelle.behoerde}</p>
+        <p>{feature.verfuegendeStelle.dienststelle}</p>
+        <p>{feature.verfuegendeStelle.adresse}, {feature.verfuegendeStelle.plzOrt}</p>
       </div>
 
-      <p><strong>Rechtliche Hinweise:</strong> {projekt.rechtlicheHinweise}</p>
+      <p><strong>Rechtliche Hinweise:</strong> {feature.rechtlicheHinweise}</p>
 
       <div>
         <strong>Geokoordinaten:</strong>
-        <p>Typ: {projekt.geometry.type}</p>
-        <p>Koordinaten: Längengrad: {projekt.geometry.coordinates[0]}, Breitengrad: {projekt.geometry.coordinates[1]}</p>
+        <p>Typ: {feature.geometry.type}</p>
+        <p>
+          Koordinaten: <br />
+          {feature.geometry.coordinates.map((coord, i) => (
+            <span key={i}>Lon: {coord[0]}, Lat: {coord[1]}<br /></span>
+          ))}
+        </p>
       </div>
+
+      <OSMMapWithPolygon data={feature} />
     </div>
   );
 }

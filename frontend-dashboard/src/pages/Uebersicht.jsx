@@ -1,28 +1,33 @@
-
-
 import { ProjektContext } from "../ProjektContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function Uebersicht({ handleEdit }) {
-
-  const { projekte, setProjekte } = useContext(ProjektContext);
-
+  const { projekte } = useContext(ProjektContext);
 
   return (
     <div className="projekt-list">
       <h2>Übersicht Baustelleninformationen</h2>
-        {projekte.map((projekt, index) => (
-          <div className="projekt-preview" key={index}>
-            <h2>{projekt.titel}</h2>
-            <h3>{projekt.untertitel}</h3>
-            <p><strong>Dauer:</strong> {new Date(projekt.dauer.von).toLocaleString()} bis {new Date(projekt.dauer.bis).toLocaleString()}</p>
-            <Link to={`/details/${projekt.projektnummer}`}>
-              Zur Detailansicht
-          </Link>
-          </div>
-        ))}
-      </div>
+
+      {projekte.map((projekt, projIndex) => (
+        <div key={projIndex}>
+          {projekt.features.map((feature, featIndex) => (
+            <div className="projekt-preview" key={featIndex}>
+              <h2>{feature.titel}</h2>
+              <h3>{feature.untertitel}</h3>
+              <p>
+                <strong>Dauer:</strong>{" "}
+                {new Date(feature.dauer.von).toLocaleString()} bis{" "}
+                {new Date(feature.dauer.bis).toLocaleString()}
+              </p>
+              <Link to={`/details/${feature.projektnummer}`}>
+                Zur Detailansicht
+              </Link>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
   );
 }
 

@@ -1,68 +1,94 @@
 {
-    "projekte": [
-      {
-        "titel": "Verkehrssperrung Kantonsstrasse Nr. 1358",
-        "untertitel": "Twann - Ligerz, Sektor Bipschal SBB-Baustelle",
-        "strassenNr": "1358 ; Twann - Ligerz",
-        "projektnummer": "A16238",
-        "projektbezeichnung": "Sektor Bipschal SBB-Baustelle",
-        "teilstrecke": "Querung der SBB-Baustelle Ligerz Ost \"Bipschal\" auf einer Länge von 200 m",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [7.148140, 47.090391]
+  "projekte": [
+    {
+      "type": "FeatureCollection",
+      "features": [
+        {
+          "type": "Feature",
+          "id": 1,
+          "titel": "Verkehrssperrung Kantonsstrasse Nr. 1358",
+          "untertitel": "Twann - Ligerz, Sektor Bipschal SBB-Baustelle",
+          "strassenNr": "1358 ; Twann - Ligerz",
+          "projektnummer": "A16238",
+          "projektbezeichnung": "Sektor Bipschal SBB-Baustelle",
+          "teilstrecke": "Querung der SBB-Baustelle Ligerz Ost \"Bipschal\" auf einer Länge von 200 m",
+          "dauer": {
+            "von": "2025-05-15T22:00:00",
+            "bis": "2025-05-16T04:30:00"
+          },
+          "ausnahmen": "keine",
+          "verkehrsfuehrung": [
+            "Vorgeschriebene Baustellen- und Umleitungsschilder werden aufgestellt.",
+            "Umleitung nach La Neuveville von Twann via Kantonsstraße „Les Gorges de Douanne“ – Prêles – La Neuveville (max. 18 t).",
+            "Umleitung nach Twann von La Neuveville via Prêles – Les Gorges de Douanne – Douanne (max. 18 t).",
+            "Autobahntrasse A5 bleibt zugänglich.",
+            "Schwerverkehr über 18 t: Umleitung über Nationalstraße N5 oder Umgehung Bielersee."
+          ],
+          "einschraenkungen": "Gesperrt für alle Verkehrsteilnehmer (Kraftfahrzeuge, Radfahrer, Reiter, Fußgänger).",
+          "grundDerMassnahme": "Lieferung und Installation eines Bohrgeräts für die SBB-Baustelle",
+          "verfuegendeStelle": {
+            "behoerde": "Tiefbauamt des Kantons Bern – Oberingenieurkreis III",
+            "dienststelle": "Service pour le Jura bernois",
+            "adresse": "Grand Nods 1",
+            "plzOrt": "2732 Loveresse"
+          },
+          "rechtlicheHinweise": "Gestützt auf Art. 65 und 66 des Strassengesetzes vom 4. Juni 2008 (SG, BSG 732.11) und Art. 43 der Strassenverordnung vom 29. Oktober 2008 (SV, BSG 732.111.1), wird diese Kantonsstraße für den Verkehr gesperrt.",
+          "geometry": {
+            "type": "LineString",
+            "coordinates":            [
+              [7.4374839490000682, 46.94757515100008],
+              [7.4375706490000653, 46.947365331000071],
+              [7.4376797500000293, 46.947383755000033],
+              [7.4376932020000481, 46.947345886000051],
+              [7.4380982370000766, 46.947414471000059],
+              [7.4380085420000341, 46.947662161000039],
+              [7.4385032550000574, 46.947747117000063],
+              [7.4384599060000482, 46.94787709700006],
+              [7.4374839430000748, 46.947717419000071],
+              [7.4375392480000642, 46.947585389000039],
+              [7.4374839490000682, 46.94757515100008]
+            ]
+          }
         },
-        "dauer": {
-          "von": "2025-05-15T22:00:00",
-          "bis": "2025-05-16T04:30:00"
-        },
-        "ausnahmen": "keine",
-        "verkehrsfuehrung": [
-          "Vorgeschriebene Baustellen- und Umleitungsschilder werden aufgestellt.",
-          "Umleitung nach La Neuveville von Twann via Kantonsstraße „Les Gorges de Douanne“ – Prêles – La Neuveville (max. 18 t).",
-          "Umleitung nach Twann von La Neuveville via Prêles – Les Gorges de Douanne – Douanne (max. 18 t).",
-          "Autobahntrasse A5 bleibt zugänglich.",
-          "Schwerverkehr über 18 t: Umleitung über Nationalstraße N5 oder Umgehung Bielersee."
-        ],
-        "einschraenkungen": "Gesperrt für alle Verkehrsteilnehmer (Kraftfahrzeuge, Radfahrer, Reiter, Fußgänger).",
-        "grundDerMassnahme": "Lieferung und Installation eines Bohrgeräts für die SBB-Baustelle",
-        "verfuegendeStelle": {
-          "behoerde": "Tiefbauamt des Kantons Bern – Oberingenieurkreis III",
-          "dienststelle": "Service pour le Jura bernois",
-          "adresse": "Grand Nods 1",
-          "plzOrt": "2732 Loveresse"
-        },
-        "rechtlicheHinweise": "Gestützt auf Art. 65 und 66 des Strassengesetzes vom 4. Juni 2008 (SG, BSG 732.11) und Art. 43 der Strassenverordnung vom 29. Oktober 2008 (SV, BSG 732.111.1), wird diese Kantonsstraße für den Verkehr gesperrt."
-      },
-      {
-        "titel": "Strassensanierung Kantonsstrasse Nr. 2105",
-        "untertitel": "Ins – Müntschemier, Abschnitt Weierbrücke",
-        "strassenNr": "2105 ; Ins – Müntschemier",
-        "projektnummer": "B20491",
-        "projektbezeichnung": "Erneuerung Fahrbahn und Brückensanierung",
-        "teilstrecke": "Bereich Weierbrücke bis Dorfeingang Müntschemier, ca. 500 m",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [7.099874, 46.998765]
-        },
-        "dauer": {
-          "von": "2025-06-10T06:00:00",
-          "bis": "2025-06-21T20:00:00"
-        },
-        "ausnahmen": "Zubringer bis Baustelle gestattet.",
-        "verkehrsfuehrung": [
-          "Einspurige Verkehrsführung mit Lichtsignalanlage.",
-          "Umleitung für Schwerverkehr via Kerzers – Galmiz – Müntschemier.",
-          "Temporäre Bushaltestellen werden eingerichtet."
-        ],
-        "einschraenkungen": "Verzögerungen durch Ampelbetrieb möglich. Durchfahrt für Schwerverkehr eingeschränkt.",
-        "grundDerMassnahme": "Belagserneuerung und Instandsetzung der Weierbrücke",
-        "verfuegendeStelle": {
-          "behoerde": "Tiefbauamt des Kantons Bern – Oberingenieurkreis I",
-          "dienststelle": "Regionalstelle Seeland",
-          "adresse": "Kasernenstrasse 19",
-          "plzOrt": "2560 Nidau"
-        },
-        "rechtlicheHinweise": "Gestützt auf Art. 65 StrG und Art. 43 SV erfolgt diese Maßnahme unter temporärer Verkehrsführung."
-      }
-    ]
-  }
+        {
+          "type": "Feature",
+          "id": 2,
+          "titel": "Strassensanierung Kantonsstrasse Nr. 2015",
+          "untertitel": "Münsingen – Rubigen, Abschnitt Schlossmatt bis Aarebrücke",
+          "strassenNr": "2015 ; Münsingen – Rubigen",
+          "projektnummer": "B20457",
+          "projektbezeichnung": "Deckbelagserneuerung mit Randabschlüssen",
+          "teilstrecke": "Zwischen Schlossmattstrasse und Aarebrücke, Länge ca. 450 m",
+          "dauer": {
+            "von": "2025-06-03T07:00:00",
+            "bis": "2025-06-07T18:00:00"
+          },
+          "ausnahmen": "Zufahrt für Anwohner und Rettungsdienste jederzeit möglich",
+          "verkehrsfuehrung": [
+            "Verkehrsregelung durch Lichtsignalanlage im Einbahnwechsel",
+            "Temporäre Halteverbote im Baustellenbereich",
+            "Signalisation gemäss Signalisationsverordnung"
+          ],
+          "einschraenkungen": "Eingeschränkter Fahrstreifen – Wartezeiten möglich",
+          "grundDerMassnahme": "Erneuerung des Fahrbahnbelags und der Randabschlüsse",
+          "verfuegendeStelle": {
+            "behoerde": "Tiefbauamt des Kantons Bern – Oberingenieurkreis II",
+            "dienststelle": "Baustellenkoordination Mittelland",
+            "adresse": "Thunstrasse 100",
+            "plzOrt": "3006 Bern"
+          },
+          "rechtlicheHinweise": "Gestützt auf Art. 65 und 66 des Strassengesetzes vom 4. Juni 2008 (SG, BSG 732.11) sowie Art. 42 ff. der Strassenverordnung (SV, BSG 732.111.1).",
+          "geometry": {
+            "type": "LineString",
+            "coordinates": [
+              [7.521035, 46.874590],
+              [7.522620, 46.873980],
+              [7.524110, 46.873360],
+              [7.525000, 46.873000]
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
