@@ -1,12 +1,10 @@
 package ch.datahackdays.baustelleninfo.service;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import ch.datahackdays.baustelleninfo.model.GeoJsonData;
-import ch.datahackdays.baustelleninfo.repository.GeoJsonDataRepository;
 
 import software.amazon.awssdk.core.ResponseInputStream;
 import software.amazon.awssdk.services.s3.S3Client;
@@ -22,9 +20,6 @@ public class S3Service {
 
     @Autowired
     private S3Client s3Client;
-
-    @Autowired
-    private GeoJsonDataRepository geoJsonDataRepository;
 
     public void uploadFile(String bucketName, String key, Path filePath) {
         s3Client.putObject(PutObjectRequest.builder()
@@ -45,22 +40,24 @@ public class S3Service {
         }
     }
 
-    public void readObjectContent(String bucketName, String key) {
+    public String readGeoJsonContent(String bucketName, String key) {
+        var content = new String();
+
         try (ResponseInputStream<GetObjectResponse> s3Object = s3Client.getObject(
                 GetObjectRequest.builder()
                         .bucket(bucketName)
                         .key(key)
                         .build())) {
 
-            // Save GeoJSON data to the database
-            GeoJsonData geoJsonData = new GeoJsonData();
-            geoJsonData.setGeoJsonContent(geoJsonData.toString());
-            geoJsonDataRepository.save(geoJsonData);
+            // Read the content of the S3 object as a string
+            content = new String(s3Object.readAllBytes(), StandardCharsets.UTF_8);
 
-            // Print the GeoJSON data
-            System.out.println("GeoJSON Data saved to the database.");
+            System.out.println("S3 Object Content: \n" + content);
+            return content;
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return content;
     }
 }

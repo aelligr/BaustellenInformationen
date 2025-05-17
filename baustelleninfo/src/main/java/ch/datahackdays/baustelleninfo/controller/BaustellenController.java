@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ch.datahackdays.baustelleninfo.model.Baustelle;
 import ch.datahackdays.baustelleninfo.repository.BaustellenRepository;
-import ch.datahackdays.baustelleninfo.service.S3Service;
 
 @RestController
 @RequestMapping("/api/baustellen")
@@ -23,9 +22,6 @@ public class BaustellenController {
 
     @Autowired
     private BaustellenRepository baustellenRepository;
-
-    @Autowired
-    private S3Service s3Service;
 
     @GetMapping
     public List<Baustelle> getAllBaustellen() {
@@ -46,9 +42,17 @@ public class BaustellenController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Baustelle> updateBaustelle(@PathVariable Long id, @RequestBody Baustelle baustelle) {
-        // TODO: Implement update logic
-        return baustellenRepository.findById(id).map(baustelleToUpdate -> {
-            return ResponseEntity.ok(baustellenRepository.save(baustelleToUpdate));
+        return baustellenRepository.findById(id).map(existingBaustelle -> {
+            // Update fields
+            existingBaustelle.setProjektNummer(baustelle.getProjektNummer());
+            existingBaustelle.setDauerVon(baustelle.getDauerVon());
+            existingBaustelle.setDauerBis(baustelle.getDauerBis());
+            existingBaustelle.setAchsBezeichnung(baustelle.getAchsBezeichnung());
+            existingBaustelle.setStatus(baustelle.getStatus());
+            existingBaustelle.setGeoJsonData(baustelle.getGeoJsonData());
+
+            // Save updated entity
+            return ResponseEntity.ok(baustellenRepository.save(existingBaustelle));
         }).orElse(ResponseEntity.notFound().build());
     }
 

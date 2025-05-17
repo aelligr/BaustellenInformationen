@@ -1,41 +1,27 @@
 package ch.datahackdays.baustelleninfo.model;
 
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
+@Data
 public class Baustelle {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String email;
 
-    // Getters and Setters
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "projekt_nummer")
+    private String projektNummer;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    private LocalDateTime dauerVon;
+    private LocalDateTime dauerBis;
+    private String objektAngaben;
+    private String achsBezeichnung;
+    private String status;
+    private String geoJsonData;
 }
 
