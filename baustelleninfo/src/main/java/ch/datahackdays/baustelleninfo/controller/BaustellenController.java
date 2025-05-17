@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.datahackdays.baustelleninfo.model.AllBaustellen;
 import ch.datahackdays.baustelleninfo.model.Baustelle;
 import ch.datahackdays.baustelleninfo.repository.BaustellenRepository;
 
@@ -24,8 +25,10 @@ public class BaustellenController {
     private BaustellenRepository baustellenRepository;
 
     @GetMapping
-    public List<Baustelle> getAllBaustellen() {
-        return baustellenRepository.findAll();
+    public AllBaustellen getAllBaustellen() {
+        var allBaustellen = new AllBaustellen();
+        allBaustellen.setProjekte(baustellenRepository.findAll());
+        return allBaustellen;
     }
 
     @GetMapping("/{id}")
